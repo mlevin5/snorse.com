@@ -4,148 +4,213 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Command docs // snorse-bot</title>
+    <meta name="description" content="The complete, tested snorse-bot command reference." />
     <link rel="icon" href="assets/snorse-mascot.png" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <a class="skip" href="#main">skip to docs</a>
     <header class="top">
-      <a class="logo" href="index.html">SNORSE-BOT<span>.COM</span></a>
-      <p>COMMAND REFERENCE v0.1</p>
+      <a class="logo" href="index.html">SNORSE-BOT</a>
+      <p>COMMAND REFERENCE</p>
     </header>
-    <nav class="nav">
+    <nav class="nav" aria-label="Main navigation">
       <a href="index.html">home</a><a href="use.html">use the shared bot</a
       ><a href="self-hosting.html">self-host</a
       ><a aria-current="page" href="docs.html">docs</a
       ><a href="privacy.html">privacy</a><a href="why.html">why?</a
-      ><a href="support.html">buy coffee</a>
+      ><a href="support.html">feed the snorse</a>
     </nav>
-    <main id="main">
-      <section class="panel page-title">
-        <p class="kicker">MAN PAGES FOR HORSES</p>
-        <h1>command documentation.</h1>
-        <p class="lede">
-          Commands are forgiving of harmless punctuation and always scoped to
-          the group or private conversation where they belong.
-        </p>
-      </section>
-      <section class="panel">
-        <h2>prefixes</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>place</th>
-              <th>accepted</th>
-              <th>ignored</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>group</td>
-              <td>real mention or leading 🐴</td>
-              <td>ordinary conversation</td>
-            </tr>
-            <tr>
-              <td>direct message</td>
-              <td>mention, typed <code>@snorse-bot</code>, or 🐴</td>
-              <td>unprefixed DM</td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-      <section class="panel">
-        <h2>reminders</h2>
-        <div class="command-list">
-          <article>
-            <code>remind [me/us] WHEN to THING</code>
-            <p>Create a one-time reminder using natural dates and times.</p>
-          </article>
-          <article>
-            <code>remind [me/us] every DAY at TIME to THING</code>
-            <p>Create a daily or weekly recurring reminder.</p>
-          </article>
-          <article>
-            <code>reminders</code> <code>list</code>
+    <main id="main" class="docs-layout">
+      <aside class="panel toc">
+        <strong>ON THIS PAGE</strong>
+        <a href="#start">how commands work</a>
+        <a href="#remind">create reminders</a>
+        <a href="#manage">list, edit, cancel</a>
+        <a href="#calendar">calendar</a>
+        <a href="#digests">scheduled digests</a>
+        <a href="#details">dates, timezones, limits</a>
+        <a href="#troubleshooting">troubleshooting</a>
+      </aside>
+      <article>
+        <section class="panel page-title">
+          <p class="kicker">TESTED AGAINST THE ACTUAL PARSER</p>
+          <h1>command reference.</h1>
+          <p class="lede">
+            Copy the examples as written, then replace the highlighted parts
+            with your own words. Every command affects only the conversation
+            where you send it.
+          </p>
+        </section>
+
+        <section class="panel" id="start">
+          <p class="endpoint">00 / START HERE</p>
+          <h2>how to talk to the snorse</h2>
+          <p>
+            In a group, either mention <strong>@snorse-bot</strong> using
+            Signal’s real mention picker or begin the message with 🐴 or 🐌. In
+            a direct message, use either emoji or type <code>@snorse-bot</code>.
+            Ordinary conversation and unprefixed DMs are ignored.
+          </p>
+          <div class="example-grid">
+            <div><span>group</span><pre><code>🐴 help</code></pre></div>
+            <div><span>group</span><pre><code>@snorse-bot reminders</code></pre></div>
+            <div><span>direct message</span><pre><code>🐴 calendar</code></pre></div>
+          </div>
+          <p class="note">
+            Wherever this page shows <code>🐴</code>, <code>🐌</code> or a real
+            Signal mention works too. The prefix is not part of the command
+            syntax below.
+          </p>
+        </section>
+
+        <section class="panel" id="remind">
+          <p class="endpoint">01 / CREATE</p>
+          <h2>create a reminder</h2>
+          <div class="command-ref">
+            <h3>One time: today or tomorrow</h3>
+            <p class="syntax"><code>remind [thing] today|tomorrow at [time]</code></p>
+            <pre><code>🐴 remind call Sam tomorrow at 9am
+🐴 remind take the bins out today at 19:30
+🐴 remind deploy the site tomorrow at 7:30pm pt</code></pre>
             <p>
-              List visible reminders. DM aggregation only includes groups where
-              the sender is currently a member.
+              Put the reminder text first, then the day and time. The optional
+              word <code>me</code> and optional <code>to</code> may appear directly
+              after <code>remind</code>: <code>remind me to call Sam tomorrow at 9am</code>.
             </p>
-          </article>
-          <article>
-            <code>cancel #ID</code>
-            <p>Delete a reminder using its short local ID.</p>
-          </article>
-          <article>
-            <code>edit #ID ...</code>
+          </div>
+          <div class="command-ref">
+            <h3>One time: exact date</h3>
+            <p class="syntax"><code>remind [thing] on [date] at [time]</code></p>
+            <pre><code>🐴 remind renew the domain on 2027-07-15 at 10am
+🐴 remind submit the form on 07/15/2027 at 10am</code></pre>
+          </div>
+          <div class="command-ref">
+            <h3>Repeat every day</h3>
+            <p class="syntax"><code>remind [thing] every day at [time]</code></p>
+            <pre><code>🐴 remind water the seedlings every day at 8am</code></pre>
+            <p><code>daily</code> also works in place of <code>every day</code>.</p>
+          </div>
+          <div class="command-ref">
+            <h3>Repeat every week</h3>
+            <p class="syntax"><code>remind [thing] every [weekday] at [time]</code></p>
+            <pre><code>🐴 remind tidy the kitchen every friday at 5pm</code></pre>
+          </div>
+        </section>
+
+        <section class="panel" id="manage">
+          <p class="endpoint">02 / READ + CHANGE + DELETE</p>
+          <h2>manage reminders</h2>
+          <div class="command-ref">
+            <h3>List</h3>
+            <p class="syntax"><code>reminders</code> or <code>list</code></p>
+            <pre><code>🐴 reminders</code></pre>
             <p>
-              Change a reminder. Optimistic versions prevent silent overwrites.
+              The reply includes each reminder’s local ID. IDs do not include a
+              required <code>#</code>; both <code>12</code> and <code>#12</code> are
+              accepted when editing or canceling.
             </p>
-          </article>
-        </div>
-      </section>
-      <section class="panel">
-        <h2>calendar</h2>
-        <div class="command-list">
-          <article>
-            <code>calendar link &lt;calendar id&gt;</code>
-            <p>Link a readable Google Calendar to this scope.</p>
-          </article>
-          <article>
-            <code>calendar</code>
-            <p>Show upcoming calendar items.</p>
-          </article>
-          <article>
-            <code>calendar next 2 weeks</code>
+          </div>
+          <div class="command-ref">
+            <h3>Edit one field</h3>
+            <p class="syntax"><code>edit [id] text|time|date|id [new value]</code></p>
+            <pre><code>🐴 edit 12 text bring snacks
+🐴 edit 12 time 6:30pm
+🐴 edit 12 date 2027-07-15
+🐴 edit 12 id snacks</code></pre>
             <p>
-              Choose a range from 1–93 days, or ask for <code>this month</code>.
+              Edit exactly one field at a time. Custom IDs use lowercase
+              letters, numbers, and hyphens and are local to this conversation.
             </p>
-          </article>
-        </div>
-        <p class="note">
-          Calendar access is read-only. All-day events are ignored. Without
-          Google credentials, reminders keep working.
-        </p>
-      </section>
-      <section class="panel">
-        <h2>scope + delivery semantics</h2>
-        <ul class="star-list">
-          <li>Every reminder belongs to one group or personal scope.</li>
-          <li>There is no default “main group.”</li>
-          <li>
-            Short IDs may repeat across groups but stay unique inside one scope.
-          </li>
-          <li>Inactive-group deliveries pause without erasing state.</li>
-          <li>
-            Mutation batches receive one reaction plus concise combined errors.
-          </li>
-        </ul>
-      </section>
-      <section class="panel">
-        <h2>troubleshooting</h2>
-        <dl class="faq">
-          <dt>The bot did nothing.</dt>
-          <dd>
-            Use a real mention or start with 🐴. Check capacity if this is a new
-            group.
-          </dd>
-          <dt>My DM was ignored.</dt>
-          <dd>Direct messages require an explicit prefix by design.</dd>
-          <dt>Calendar is not configured.</dt>
-          <dd>The host lacks Google credentials. Reminders still work.</dd>
-          <dt>Why can’t a DM see every group?</dt>
-          <dd>
-            It only aggregates groups whose current Signal roster contains the
-            sender.
-          </dd>
-        </dl>
-      </section>
+          </div>
+          <div class="command-ref">
+            <h3>Cancel</h3>
+            <p class="syntax"><code>cancel [id]</code></p>
+            <pre><code>🐴 cancel 12</code></pre>
+          </div>
+        </section>
+
+        <section class="panel" id="calendar">
+          <p class="endpoint">03 / GOOGLE CALENDAR</p>
+          <h2>read a calendar</h2>
+          <p>
+            Calendar support is read-only and must be configured by the host.
+            Start with setup help; it provides the Google service-account email
+            that needs <em>See all event details</em> permission.
+          </p>
+          <div class="command-ref">
+            <h3>Link a calendar to this conversation</h3>
+            <p class="syntax"><code>calendar link help</code></p>
+            <pre><code>🐴 calendar link help
+🐴 calendar link household@example.com</code></pre>
+            <p><code>link calendar [calendar id]</code> is an equivalent form.</p>
+          </div>
+          <div class="command-ref">
+            <h3>Show events</h3>
+            <pre><code>🐴 calendar
+🐴 calendar next 10 days
+🐴 next 3 weeks
+🐴 calendar this month</code></pre>
+            <p>
+              <code>calendar</code> shows the next seven days. A range must be at
+              least one day and no more than 93 days. The word
+              <code>calendar</code> is optional for <code>next…</code> and
+              <code>this month</code> queries.
+            </p>
+          </div>
+        </section>
+
+        <section class="panel" id="digests">
+          <p class="endpoint">04 / SCHEDULE A COMMAND</p>
+          <h2>scheduled calendar digests</h2>
+          <p class="syntax"><code>[calendar query] -&gt; remind [label] [schedule]</code></p>
+          <pre><code>🐴 calendar next 7 days -&gt; remind weekly agenda every monday at 8am
+🐴 calendar this month -&gt; remind month check every day at 6pm</code></pre>
+          <p class="warning inline-warning">
+            Scheduled calendar digests work only in groups. At delivery time,
+            the snorse runs the calendar query and posts its current results.
+            The first example above is verified; calendar ranges themselves
+            must match the forms documented in the calendar section.
+          </p>
+        </section>
+
+        <section class="panel" id="details">
+          <p class="endpoint">05 / RULES</p>
+          <h2>dates, timezones, and scope</h2>
+          <table>
+            <tbody>
+              <tr><th>Dates</th><td><code>YYYY-MM-DD</code> or <code>MM/DD/YYYY</code></td></tr>
+              <tr><th>Times</th><td><code>7pm</code>, <code>7:30pm</code>, or 24-hour <code>19:30</code></td></tr>
+              <tr><th>Timezones</th><td><code>et</code>, <code>ct</code>, <code>mt</code>, <code>pt</code>, or <code>utc</code>; otherwise the host default applies</td></tr>
+              <tr><th>Reminder text</th><td>1–500 characters</td></tr>
+              <tr><th>Scope</th><td>Every reminder and linked calendar belongs to one group or personal conversation</td></tr>
+            </tbody>
+          </table>
+          <p>
+            In a DM, listing reminders or calendars may also include active
+            groups whose current Signal member list contains you. A DM cannot
+            expose groups you are not currently in.
+          </p>
+        </section>
+
+        <section class="panel" id="troubleshooting">
+          <p class="endpoint">06 / TROUBLESHOOTING</p>
+          <h2>when nothing happens</h2>
+          <dl class="faq">
+            <dt>The snorse ignored the message.</dt>
+            <dd>Put 🐴 or 🐌 at the very beginning, or use Signal’s real mention picker. A typed <code>@snorse-bot</code> triggers DMs, but group chats require a real mention.</dd>
+            <dt>The reminder syntax looked natural, but failed.</dt>
+            <dd>The grammar is intentionally small. Put the thing first and the schedule last; copy one of the create examples above.</dd>
+            <dt>Calendar integration is not configured.</dt>
+            <dd>The host has no Google credentials. Reminder commands still work normally.</dd>
+            <dt>A new group receives only a capacity link.</dt>
+            <dd>The shared host is full or unhealthy. Existing groups stay online and new groups enter a first-in, first-out waitlist.</dd>
+          </dl>
+        </section>
+      </article>
     </main>
     <footer>
-      <p>
-        <a data-project href="#">read the source</a> ·
-        <a href="use.html">shared bot setup</a> ·
-        <a href="self-hosting.html">self-hosting</a>
-      </p>
+      <p><a data-project href="#">source</a> · <a href="use.html">shared bot setup</a> · <a href="self-hosting.html">self-hosting</a></p>
     </footer>
     <script src="config.js"></script>
     <script src="site.js"></script>

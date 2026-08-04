@@ -142,9 +142,6 @@ main {
   padding: clamp(1rem, 3vw, 2rem);
   margin-bottom: 1rem;
 }
-.panel:nth-child(3n) {
-  border-color: #755a36;
-}
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
@@ -245,6 +242,7 @@ a:hover {
 .grid {
   display: grid;
   gap: 1rem;
+  margin-bottom: 1rem;
 }
 .grid.two {
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -475,6 +473,59 @@ pre code {
   margin: 1rem 0;
   background: #0a1c11;
 }
+.endpoint {
+  margin: 0 0 0.5rem;
+  color: var(--pink);
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  font-size: 0.78rem;
+}
+.command-ref {
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--green);
+  background: #0a1c11;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+.command-ref h3 {
+  font-size: 1.15rem;
+  color: var(--paper);
+}
+.syntax {
+  margin: 0.7rem 0;
+}
+.syntax code {
+  display: inline-block;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid #315f40;
+}
+.example-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+.example-grid div {
+  min-width: 0;
+}
+.example-grid span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+.example-grid pre {
+  margin: 0.25rem 0 0;
+}
+.inline-warning {
+  max-width: none;
+}
+.panel > :first-child {
+  margin-top: 0;
+}
+.panel > :last-child {
+  margin-bottom: 0;
+}
 .faq dt {
   color: var(--lime);
   font-weight: bold;
@@ -533,7 +584,8 @@ footer {
   .grid.two,
   .grid.three,
   .docs-layout,
-  .coffee {
+  .coffee,
+  .example-grid {
     grid-template-columns: 1fr;
   }
   .mascot {
