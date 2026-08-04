@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Use the shared bot // snorse-bot</title>
+    <link rel="icon" href="assets/snorse-mascot.png" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a class="skip" href="#main">skip to guide</a>
+    <header class="top">
+      <a class="logo" href="index.html">SNORSE-BOT<span>.COM</span></a>
+      <p>PUBLIC ACCESS NODE</p>
+    </header>
+    <nav class="nav">
+      <a href="index.html">home</a
+      ><a aria-current="page" href="use.html">use the shared bot</a
+      ><a href="self-hosting.html">self-host</a><a href="docs.html">docs</a
+      ><a href="privacy.html">privacy</a><a href="why.html">why?</a
+      ><a href="support.html">buy coffee</a>
+    </nav>
+    <main id="main">
+      <section class="panel page-title">
+        <p class="kicker">PATH A / NO SERVER REQUIRED</p>
+        <h1>invite the shared snorse.</h1>
+        <p class="lede">
+          Best for ordinary groups that want reminders without operating
+          infrastructure.
+        </p>
+      </section>
+      <section class="grid two">
+        <article class="panel">
+          <h2>three steps</h2>
+          <ol>
+            <li>
+              In Signal, find username
+              <strong data-username>@snorse-bot</strong>.
+            </li>
+            <li>Add the bot to your group.</li>
+            <li>
+              Mention it or begin a message with 🐴, followed by a command.
+            </li>
+          </ol>
+          <p><a class="button hot" href="signal://">OPEN SIGNAL</a></p>
+        </article>
+        <article class="panel">
+          <h2>the command rule</h2>
+          <p>
+            Group messages are ignored unless they include a real bot mention or
+            start with 🐴. Direct messages also need an explicit prefix. This
+            prevents normal conversation from becoming instructions.
+          </p>
+          <pre><code>🐴 help
+@snorse-bot reminders
+🐴 remind us friday at 6pm to order pizza</code></pre>
+        </article>
+      </section>
+      <section class="panel">
+        <h2>capacity + the waitlist</h2>
+        <p>
+          The host admits groups only while RAM, disk, Signal API, and listener
+          health remain safe. Existing groups stay active. When full, new groups
+          enter a FIFO queue and receive a welcome when capacity returns.
+        </p>
+        <ul class="star-list">
+          <li>initial group cap: 10</li>
+          <li>standalone DM pool: 25 people</li>
+          <li>members of active groups do not consume DM slots</li>
+          <li>donations never affect position</li>
+        </ul>
+        <p><a href="index.html#capacity">see live aggregate status →</a></p>
+      </section>
+      <section class="panel">
+        <h2>what you are trusting</h2>
+        <p>
+          You trust the shared host to process command plaintext and store
+          reminder data. Signal protects transport, but a functioning bot must
+          read the commands it handles. If that boundary does not fit your
+          group, <a href="self-hosting.html">self-host instead</a>.
+        </p>
+      </section>
+      <section class="panel">
+        <h2>quick examples</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>you want</th>
+              <th>say</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>help</td>
+              <td><code>🐴 help</code></td>
+            </tr>
+            <tr>
+              <td>one-time reminder</td>
+              <td><code>🐴 remind me tomorrow at 9am to call Sam</code></td>
+            </tr>
+            <tr>
+              <td>weekly reminder</td>
+              <td><code>🐴 remind us every friday at 5pm to tidy up</code></td>
+            </tr>
+            <tr>
+              <td>list reminders</td>
+              <td><code>🐴 reminders</code></td>
+            </tr>
+            <tr>
+              <td>cancel one</td>
+              <td><code>🐴 cancel #384</code></td>
+            </tr>
+          </tbody>
+        </table>
+        <p><a href="docs.html">full command docs →</a></p>
+      </section>
+    </main>
+    <footer>
+      <p>
+        <a href="index.html">← home</a> · questions:
+        <a href="mailto:bot@snorse.com">bot@snorse.com</a>
+      </p>
+    </footer>
+    <script src="config.js"></script>
+    <script src="site.js"></script>
+  </body>
+</html>

@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Self-host // snorse-bot</title>
+    <link rel="icon" href="assets/snorse-mascot.png" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a class="skip" href="#main">skip to guide</a>
+    <header class="top">
+      <a class="logo" href="index.html">SNORSE-BOT<span>.COM</span></a>
+      <p>SYSOP MANUAL</p>
+    </header>
+    <nav class="nav">
+      <a href="index.html">home</a><a href="use.html">use the shared bot</a
+      ><a aria-current="page" href="self-hosting.html">self-host</a
+      ><a href="docs.html">docs</a><a href="privacy.html">privacy</a
+      ><a href="why.html">why?</a><a href="support.html">buy coffee</a>
+    </nav>
+    <main id="main" class="docs-layout">
+      <aside class="panel toc">
+        <strong>ON THIS PAGE</strong><a href="#choose">should I?</a
+        ><a href="#needs">what you need</a><a href="#install">installation</a
+        ><a href="#data">data + backups</a><a href="#upgrade">upgrades</a>
+      </aside>
+      <article>
+        <section class="panel page-title">
+          <p class="kicker">PATH B / ADVANCED HORSEKEEPING</p>
+          <h1>run your own snorse.</h1>
+          <p class="lede">
+            Maximum control, effectively unlimited admission, and nobody else’s
+            host in your trust boundary. Also: you are the sysadmin now.
+          </p>
+        </section>
+        <section class="panel" id="choose">
+          <h2>should I self-host?</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>choose shared</th>
+                <th>choose self-hosted</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>You want it to just work</td>
+                <td>You want control of stored data</td>
+              </tr>
+              <tr>
+                <td>You trust the shared host</td>
+                <td>Your group only trusts your host</td>
+              </tr>
+              <tr>
+                <td>You do not want server chores</td>
+                <td>You can maintain Docker + backups</td>
+              </tr>
+              <tr>
+                <td>Safe capacity is available</td>
+                <td>You need private or unlimited use</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <section class="panel" id="needs">
+          <h2>before touching a terminal</h2>
+          <ul class="check-list">
+            <li>A separate Signal-capable phone number for the bot</li>
+            <li>A Linux/macOS host with Docker and Compose</li>
+            <li>Persistent storage and a backup destination</li>
+            <li>A long random state API token</li>
+          </ul>
+          <div class="warning">
+            <strong>!!! identity safety !!!</strong>
+            <p>
+              Never run two active copies of one Signal identity. Stop the old
+              bot before migrating or restoring its state.
+            </p>
+          </div>
+        </section>
+        <section class="panel" id="install">
+          <h2>installation</h2>
+          <ol class="steps">
+            <li>
+              <span>1</span>
+              <div>
+                <strong>clone it</strong>
+                <pre><code>git clone https://github.com/mlevin5/snorse-bot.git
+cd snorse-bot
+cp .env.example .env</code></pre>
+              </div>
+            </li>
+            <li>
+              <span>2</span>
+              <div>
+                <strong>configure it</strong>
+                <p>
+                  Set the bot number, UUID, state token, and service URLs in
+                  <code>.env</code>. SQLite needs no third-party database
+                  credentials.
+                </p>
+              </div>
+            </li>
+            <li>
+              <span>3</span>
+              <div>
+                <strong>register Signal</strong>
+                <p>
+                  Use the local signal-cli REST API registration flow. Keep
+                  verification codes and identity state secret.
+                </p>
+              </div>
+            </li>
+            <li>
+              <span>4</span>
+              <div>
+                <strong>start one copy</strong>
+                <pre><code>docker compose up -d
+docker compose ps
+docker compose logs -f bot</code></pre>
+              </div>
+            </li>
+            <li>
+              <span>5</span>
+              <div>
+                <strong>test it</strong>
+                <p>
+                  Create, list, and cancel a reminder; restart and verify
+                  durable state.
+                </p>
+              </div>
+            </li>
+          </ol>
+        </section>
+        <section class="panel" id="data">
+          <h2>data map + backups</h2>
+          <dl class="data-map">
+            <dt><code>signal-state</code></dt>
+            <dd>Signal registration, keys, and identity state.</dd>
+            <dt><code>state-data</code></dt>
+            <dd>SQLite scopes, reminders, admission metadata, and claims.</dd>
+          </dl>
+          <p>
+            Back up both volumes together. Test restores. A backup you have
+            never restored is a theory.
+          </p>
+        </section>
+        <section class="panel" id="upgrade">
+          <h2>upgrade ritual</h2>
+          <pre><code>docker compose pull
+docker compose build
+docker compose up -d
+docker compose ps</code></pre>
+          <p>
+            Back up first and verify commands afterward. Google Calendar is
+            optional; reminders work without it.
+          </p>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>
+        <a href="index.html">← return to web meadow</a> ·
+        <a data-project href="#">source</a> · <a href="docs.html">commands</a>
+      </p>
+    </footer>
+    <script src="config.js"></script>
+    <script src="site.js"></script>
+  </body>
+</html>

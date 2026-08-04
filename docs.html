@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Command docs // snorse-bot</title>
+    <link rel="icon" href="assets/snorse-mascot.png" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a class="skip" href="#main">skip to docs</a>
+    <header class="top">
+      <a class="logo" href="index.html">SNORSE-BOT<span>.COM</span></a>
+      <p>COMMAND REFERENCE v0.1</p>
+    </header>
+    <nav class="nav">
+      <a href="index.html">home</a><a href="use.html">use the shared bot</a
+      ><a href="self-hosting.html">self-host</a
+      ><a aria-current="page" href="docs.html">docs</a
+      ><a href="privacy.html">privacy</a><a href="why.html">why?</a
+      ><a href="support.html">buy coffee</a>
+    </nav>
+    <main id="main">
+      <section class="panel page-title">
+        <p class="kicker">MAN PAGES FOR HORSES</p>
+        <h1>command documentation.</h1>
+        <p class="lede">
+          Commands are forgiving of harmless punctuation and always scoped to
+          the group or private conversation where they belong.
+        </p>
+      </section>
+      <section class="panel">
+        <h2>prefixes</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>place</th>
+              <th>accepted</th>
+              <th>ignored</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>group</td>
+              <td>real mention or leading 🐴</td>
+              <td>ordinary conversation</td>
+            </tr>
+            <tr>
+              <td>direct message</td>
+              <td>mention, typed <code>@snorse-bot</code>, or 🐴</td>
+              <td>unprefixed DM</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section class="panel">
+        <h2>reminders</h2>
+        <div class="command-list">
+          <article>
+            <code>remind [me/us] WHEN to THING</code>
+            <p>Create a one-time reminder using natural dates and times.</p>
+          </article>
+          <article>
+            <code>remind [me/us] every DAY at TIME to THING</code>
+            <p>Create a daily or weekly recurring reminder.</p>
+          </article>
+          <article>
+            <code>reminders</code> <code>list</code>
+            <p>
+              List visible reminders. DM aggregation only includes groups where
+              the sender is currently a member.
+            </p>
+          </article>
+          <article>
+            <code>cancel #ID</code>
+            <p>Delete a reminder using its short local ID.</p>
+          </article>
+          <article>
+            <code>edit #ID ...</code>
+            <p>
+              Change a reminder. Optimistic versions prevent silent overwrites.
+            </p>
+          </article>
+        </div>
+      </section>
+      <section class="panel">
+        <h2>calendar</h2>
+        <div class="command-list">
+          <article>
+            <code>calendar link &lt;calendar id&gt;</code>
+            <p>Link a readable Google Calendar to this scope.</p>
+          </article>
+          <article>
+            <code>calendar</code>
+            <p>Show upcoming calendar items.</p>
+          </article>
+          <article>
+            <code>calendar next 2 weeks</code>
+            <p>
+              Choose a range from 1–93 days, or ask for <code>this month</code>.
+            </p>
+          </article>
+        </div>
+        <p class="note">
+          Calendar access is read-only. All-day events are ignored. Without
+          Google credentials, reminders keep working.
+        </p>
+      </section>
+      <section class="panel">
+        <h2>scope + delivery semantics</h2>
+        <ul class="star-list">
+          <li>Every reminder belongs to one group or personal scope.</li>
+          <li>There is no default “main group.”</li>
+          <li>
+            Short IDs may repeat across groups but stay unique inside one scope.
+          </li>
+          <li>Inactive-group deliveries pause without erasing state.</li>
+          <li>
+            Mutation batches receive one reaction plus concise combined errors.
+          </li>
+        </ul>
+      </section>
+      <section class="panel">
+        <h2>troubleshooting</h2>
+        <dl class="faq">
+          <dt>The bot did nothing.</dt>
+          <dd>
+            Use a real mention or start with 🐴. Check capacity if this is a new
+            group.
+          </dd>
+          <dt>My DM was ignored.</dt>
+          <dd>Direct messages require an explicit prefix by design.</dd>
+          <dt>Calendar is not configured.</dt>
+          <dd>The host lacks Google credentials. Reminders still work.</dd>
+          <dt>Why can’t a DM see every group?</dt>
+          <dd>
+            It only aggregates groups whose current Signal roster contains the
+            sender.
+          </dd>
+        </dl>
+      </section>
+    </main>
+    <footer>
+      <p>
+        <a data-project href="#">read the source</a> ·
+        <a href="use.html">shared bot setup</a> ·
+        <a href="self-hosting.html">self-hosting</a>
+      </p>
+    </footer>
+    <script src="config.js"></script>
+    <script src="site.js"></script>
+  </body>
+</html>

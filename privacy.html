@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Privacy // snorse-bot</title>
+    <link rel="icon" href="assets/snorse-mascot.png" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a class="skip" href="#main">skip to privacy information</a>
+    <header class="top">
+      <a class="logo" href="index.html">SNORSE-BOT<span>.COM</span></a>
+      <p>TRUST BOUNDARY MAP</p>
+    </header>
+    <nav class="nav">
+      <a href="index.html">home</a><a href="use.html">use the shared bot</a
+      ><a href="self-hosting.html">self-host</a><a href="docs.html">docs</a
+      ><a aria-current="page" href="privacy.html">privacy</a
+      ><a href="why.html">why?</a><a href="support.html">buy coffee</a>
+    </nav>
+    <main id="main">
+      <section class="panel page-title">
+        <p class="kicker">NO “MILITARY-GRADE” HAND WAVING</p>
+        <h1>privacy, plainly.</h1>
+        <p class="lede">
+          Signal transport is encrypted. The trusted bot host still processes
+          plaintext because software cannot respond to a command it cannot read.
+        </p>
+      </section>
+      <section class="panel flow">
+        <h2>where a command goes</h2>
+        <p>
+          <span>your Signal app</span><b>encrypted →</b
+          ><span>bot Signal account</span><b>local API →</b
+          ><span>trusted bot process</span><b>scoped write →</b
+          ><span>state service</span>
+        </p>
+      </section>
+      <section class="grid two">
+        <article class="panel">
+          <h2>stored</h2>
+          <ul class="check-list">
+            <li>reminder text and schedule</li>
+            <li>scope identifiers and display names</li>
+            <li>linked calendar IDs</li>
+            <li>admission and support timestamps</li>
+            <li>Signal identity state on the host</li>
+          </ul>
+        </article>
+        <article class="panel">
+          <h2>not part of the deal</h2>
+          <ul class="cross-list">
+            <li>analytics or visitor tracking</li>
+            <li>advertising cookies</li>
+            <li>selling behavioral profiles</li>
+            <li>reading ordinary unprefixed DMs</li>
+            <li>donation-based service tiers</li>
+          </ul>
+        </article>
+      </section>
+      <section class="panel">
+        <h2>command minimization</h2>
+        <p>
+          Group commands require a real mention or leading horse emoji. DMs
+          require an explicit prefix. The bot ignores its own messages.
+          Membership is checked live before group information is aggregated into
+          a DM.
+        </p>
+      </section>
+      <section class="panel">
+        <h2>identity trust</h2>
+        <p>
+          The hosted bot trusts changed Signal identities only for current group
+          members, plus an explicit standalone DM applicant while delivering
+          their admission result. Unrelated identities remain untrusted.
+        </p>
+      </section>
+      <section class="panel warning">
+        <h2>choose your boundary</h2>
+        <p>
+          The shared service means trusting its operator and host. Self-hosting
+          moves that trust to a machine and operator chosen by your group.
+          Neither changes the basic truth that the bot endpoint processes
+          plaintext.
+        </p>
+        <p><a href="self-hosting.html">read the private-host guide →</a></p>
+      </section>
+      <section class="panel">
+        <h2>website privacy</h2>
+        <p>
+          This static site sets no cookies and loads no analytics, ads, web
+          fonts, or social pixels. The capacity widget receives aggregate counts
+          and host status—never Signal identifiers, names, reminders, or
+          messages.
+        </p>
+        <p>
+          Questions or deletion requests:
+          <a href="mailto:bot@snorse.com">bot@snorse.com</a>.
+        </p>
+      </section>
+    </main>
+    <footer><p>privacy is architecture, not a footer link</p></footer>
+    <script src="config.js"></script>
+    <script src="site.js"></script>
+  </body>
+</html>
