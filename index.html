@@ -67,19 +67,21 @@
           </ul>
           <p><a href="docs.html">command reference →</a></p>
         </article>
-        <article class="panel terminal">
-          <p>
-            <span class="prompt">group&gt;</span> 🐴 remind water the plants
-            tomorrow at 7pm
-          </p>
-          <p><span class="reply">snorse&gt;</span> ✅</p>
-          <p><span class="prompt">group&gt;</span> @snorse-bot reminders</p>
-          <p>
-            <span class="reply">snorse&gt;</span> <strong>384</strong> water
-            the plants<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tomorrow
-            · 7:00 pm
-          </p>
-          <span class="cursor" aria-hidden="true">_</span>
+        <article class="panel signal-demo">
+          <div class="signal-window">
+            <div class="signal-bar">
+              <img src="assets/snorse-left.png" alt="" />
+              <div><strong>snorse-bot</strong><small>Signal group</small></div>
+              <span aria-hidden="true">•••</span>
+            </div>
+            <div class="message-list">
+              <p class="bubble incoming">🐌 remind buy oat milk tomorrow at 8am</p>
+              <p class="bubble outgoing"><img class="bubble-avatar" src="assets/snorse-left.png" alt="" /><span>✅ 187: buy oat milk<br /><small>tomorrow · 8:00 am</small></span></p>
+              <p class="bubble incoming">@snorse-bot reminders</p>
+              <p class="bubble outgoing"><img class="bubble-avatar" src="assets/snorse-left.png" alt="" /><span>🐌 <strong>reminders:</strong><br />187 buy oat milk</span></p>
+            </div>
+          </div>
+          <p class="chat-caption">a tiny example of the snorse in its natural habitat</p>
         </article>
       </section>
       <section class="panel" id="capacity">
