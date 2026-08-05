@@ -16,10 +16,6 @@ document.querySelectorAll("#kofi").forEach((element) => {
     element.hidden = true;
   }
 });
-document.querySelectorAll("#support-pending").forEach((element) => {
-  element.hidden = Boolean(config.kofiUrl);
-});
-
 async function loadCapacity() {
   const label = document.querySelector("#status-label");
   if (!label) return;
